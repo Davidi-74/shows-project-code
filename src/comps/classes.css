@@ -1,0 +1,39 @@
+.collapse {
+    visibility: collapse;
+    height: 0;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.loginComp{
+    text-align: center;
+    background-color: aqua; 
+}
+
+.main {
+    background-color: #112d4e;
+    color: #fbe6c2;
+    text-align: center;
+    padding-top: 10vh;
+    height: 100vh;
+}
+
+.innerBox {
+    flex: 1;
+    width: 101.3%;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.userDataPaper {
+    height: "100px";
+    width: "200px";
+    background-color: #222831;
+}
+
+.indUserHeaders {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
