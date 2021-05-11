@@ -52,8 +52,13 @@ const getAllUsersIDs = async () => {
     return ids.data;
 }
 
+const wakeServers = () => {
+    axios.get(URL);
+    axios.get("https://shows-server.herokuapp.com/")
+}
+
 export default {
     checkLogin, userCreatedByAdmin, updateUser, getFname,
     getLoginData, getAllUsersData, createUser, getIndCompUserData,
-    deleteUser, getAllUsersIDs
+    deleteUser, getAllUsersIDs, wakeServers
 }

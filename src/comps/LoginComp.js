@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import utils from './Users/userUtils'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -27,7 +27,9 @@ const LoginComp = (props) => {
         }
     }
 
-
+    useEffect(() => {
+        utils.wakeServers();
+    }, [])
 
     const loginComp = loginAndCreateUser();
     return (
