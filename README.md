@@ -8,6 +8,7 @@ The app is used for managing TV Shows, Members (members have a subscription for 
 
 You can view the deployed app at https://davidi-74.github.io/shows-project/.
 
+To login, use username *GithubGuest*, and password *abc123*.
 
 You can view the Node.JS servers' code at https://github.com/Davidi-74/users-server and https://github.com/Davidi-74/shows-server (they are in different repositories as they are hosted via Heroku).
 
