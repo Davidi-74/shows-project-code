@@ -23,7 +23,7 @@ The rest of the components are filed into different folders by topic:
 
 *Members
 
-*Movies
+*Movies (TV Shows)
 
 *Subscriptions (the TV Shows that the members are subsctibed to).
 
