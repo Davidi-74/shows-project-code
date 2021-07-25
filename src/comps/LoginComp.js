@@ -6,24 +6,32 @@ import { Grid, Container, TextField, Button } from '@material-ui/core'
 import './classes.css'
 import Paper from '@material-ui/core/Paper'
 import { loginAndCreateUser } from './materialUI'
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const LoginComp = (props) => {
     const [un, setUn] = useState("");
     const [pwd, setPwd] = useState("");
+    const [loadingBar, setLoadingBar] = useState("");
 
     const login = async (e) => {
         e.preventDefault();
-        let unConvert = un.toLowerCase();
-        let user = await utils.checkLogin(unConvert, pwd);
-        if (user.valid) {
-            let loginData = await utils.getLoginData(user.id);
-            let start = new Date();
-            let actionObj = { type: "LOGIN", payload: { id: user.id, fname: loginData.fname, admin: loginData.admin, permissions: loginData.permissions, timer: start, sessionTimeout: loginData.sessionTimeout } };
-            props.dispatch(actionObj);
-            props.history.push('/movies/1')
+        if (un !== "" && pwd !== "") {
+            let unConvert = un.toLowerCase();
+            setLoadingBar(<span><LinearProgress color="secondary" /></span>)
+            let user = await utils.checkLogin(unConvert, pwd);
+            if (user.valid) {
+                let loginData = await utils.getLoginData(user.id);
+                let start = new Date();
+                let actionObj = { type: "LOGIN", payload: { id: user.id, fname: loginData.fname, admin: loginData.admin, permissions: loginData.permissions, timer: start, sessionTimeout: loginData.sessionTimeout } };
+                props.dispatch(actionObj);
+                props.history.push('/movies/1')
+            }
+            else {
+                alert("Invalid Username/Password!")
+            }
         }
         else {
-            alert("Invalid Username/Password!")
+            alert("Please enter a Username and Password")
         }
     }
 
@@ -42,6 +50,12 @@ const LoginComp = (props) => {
                         <form onSubmit={e => login(e)}>
                             <TextField xs={12} type="text" label="Username" onChange={e => setUn(e.target.value)} /> <br />
                             <TextField xs={12} type="password" label="Password" onChange={e => setPwd(e.target.value)} /> < br /><br />
+                            {
+                                loadingBar != "" ?
+                                    loadingBar
+                                    :
+                                    null
+                            }<br />
                             <Button xs={12} type="submit">Login</Button>< br /> <br />
                         </form>
                         <span xs={12}>New Here? <Link style={{ color: "#ffd369" }} to="/createAccount">Create a New Account</Link></span><br /><br />

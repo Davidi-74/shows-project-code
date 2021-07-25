@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import Pagination from '@material-ui/lab/Pagination';
 import { useLocation, withRouter } from 'react-router';
+import MoviePaginationSkel from './MoviePaginationSkel';
 
 const MoviePagination = (props) => {
     const location = useLocation();
@@ -42,9 +43,11 @@ const MoviePagination = (props) => {
             if (ids.length > 0) {
                 let newItems = ids.map((id, index) => {
                     return (
-                        <Paper xs={4} style={{ width: "400px" }} key={"movie" + index} >
-                            <IndMovie id={id} key={"movie" + index} deleted={movieDeleted} searched={searchFlag} />
-                        </Paper>
+                        <Grid container item xs={4} xl={3} justify="center">
+                            <Paper style={{ width: "400px" }} key={"movie" + index} >
+                                <IndMovie id={id} key={"movie" + index} deleted={movieDeleted} searched={searchFlag} />
+                            </Paper>
+                        </Grid>
                     )
                 })
                 setItems(newItems)
@@ -121,8 +124,13 @@ const MoviePagination = (props) => {
                 <Grid item xs={12}>
                     <span className={permited}><SearchComp search={(ids) => searched(ids)} /></span>
                 </Grid>
-                <Grid container item direction="row" justify="space-evenly" alignItems="center">
-                    {items}
+                <Grid container item direction="row" alignItems="center" justify="center">
+                    {
+                        items !== "" ?
+                            items
+                            :
+                            <MoviePaginationSkel />
+                    }
                 </Grid>
                 <Grid item container justify="center" style={{ marginTop: "20px" }}>
                     <Pagination style={{ visibility: (!showingSearched && permited == "visible") ? "visible" : "collapse" }} count={count} page={page} boundaryCount={1} siblingCount={1} onChange={getPage} />
